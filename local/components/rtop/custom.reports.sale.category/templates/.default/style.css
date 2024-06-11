@@ -1,0 +1,182 @@
+.r_reports_filter--wrapper{
+	padding: 20px 20px 100px;
+	font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+	font-size: 13px;
+}
+.r_reports_filter .item{
+	margin-bottom: 20px;
+	position: relative;
+}
+.r_reports_filter .item_name{
+	color: #a9adb2;
+	margin-bottom: 13px;
+}
+.r_reports_filter .item_name.required_label::after{
+	content: "*";
+	display: inline-block;
+	color: red;
+}
+.r_multi_field--select,.r_search_field--search,.r_select_field--select{
+	max-width: 400px;
+	border: 1px solid #a9adb2;
+	line-height: 22px;
+	padding: 3px 5px;
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+}
+.r_multi_field--select.active,.r_search_field--search.active,.r_select_field--select.active{
+	z-index: 2;
+}
+.r_multi_field--select::before,.r_select_field--select::before{
+	content: "";
+	width: 25px;
+	height: 16px;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI1IDE2Ij4gIDxwb2x5Z29uIGZpbGw9IiM1MzVDNjkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgcG9pbnRzPSIzLjU0NiA3LjQyNSAzLjU0NiAxLjYwNyAxLjYwNyAxLjYwNyAxLjYwNyA4LjM5NCAxLjYwNyA5LjM2NCA5LjM2NCA5LjM2NCA5LjM2NCA3LjQyNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDkuOSAxLjY1NykiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-position: right center;
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+.r_multi_field--select.active::before,.r_select_field--select.active::before{
+	transform: rotate(180deg);
+	top: 6px;
+	right: 5px;
+}
+.r_multi_field--list,.r_select_field--list{
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
+    display: flex;
+    flex-direction: column;
+    width: 398px;
+    height: 100px;
+    overflow-y: scroll;
+    background: #fff;
+    border: 1px solid #a9adb2;
+    margin-top: -1px;
+}
+.r_multi_field--list.active,.r_search_field--list.active,.r_select_field--list.active{
+	transition: opacity 1s;
+	opacity: 1;
+	visibility: visible;
+	z-index: 2;
+}
+.r_multi_field--item{
+	position: relative;
+	line-height: 30px;
+}
+.r_multi_field--item input[type='checkbox']{
+	position: absolute;
+	opacity: 0;
+}
+.r_multi_field--item label, .r_select_field--list div{
+	padding: 5px 10px 5px 15px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 25px;
+    cursor: pointer;
+}
+.r_multi_field--item input[type='checkbox']:checked + label{
+	background: #bcedfc;
+}
+.r_search_field--list{
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #a9adb2;
+    margin-top: -1px;
+    width: 398px;
+    background: #fff;
+}
+.r_search_field--list div{
+	display: none;
+	line-height: 25px;
+	padding: 5px 10px 5px 15px;
+}
+.r_search_field--list div.active{
+	display: block;
+}
+.r_reports_filter--overflow{
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	opacity: 0;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.r_reports_filter--overflow.active{
+	z-index: 1;
+	display: block;
+}
+.custom--input{
+	padding-top: 20px;
+}
+.custom--input label{
+	padding-right: 15px;
+}
+.r_reports_filter--error{
+	background: #e9afab;
+    display: inline-block;
+    line-height: 35px;
+    color: #801212;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+.r_product_list,.r_section_list{
+	padding: 15px 0 0;
+}
+.r_product_field,.r_section_field{
+	display: flex;
+	margin-bottom: 10px;
+}
+.r_product_remove,.r_section_remove{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	cursor: pointer;
+	margin-left: 10px;
+}
+.r_product_remove::after, .r_product_remove::before,.r_section_remove::after, .r_section_remove::before{
+	content: "";
+	width: 100%;
+	height: 2px;
+	position: absolute;
+	background: red;
+	transform: rotate(45deg);
+	top: 6px;
+}
+.r_product_remove::before,.r_section_remove::before{
+	transform: rotate(-45deg);
+}
+#download{
+	display: inline-block;
+    border: 1px solid #2067b0;
+    width: 140px;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 30px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.r_reports_filter{
+	padding: 0 15px;
+}
+.r_reports_result{
+	padding: 0 15px 30px;
+}
+.r_reports_submit{
+	margin-top: 30px;
+}
+body{
+	background-image: none!important;
+}

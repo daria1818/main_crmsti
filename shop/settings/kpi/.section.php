@@ -1,0 +1,6 @@
+<?
+$sSectionName = "KPI";
+$arDirProperties = Array(
+
+);
+?>

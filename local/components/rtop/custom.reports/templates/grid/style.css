@@ -1,0 +1,6 @@
+body{
+	background-image: none!important;
+}
+#CCustomReportsComponent_btn .ui-btn-icon-add{
+	--ui-btn-icon: url(/bitrix/js/ui/buttons/icons/images/ui-download-white.svg?v=1.1);
+}

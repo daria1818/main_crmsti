@@ -1,0 +1,143 @@
+.iframe-info-panel-title{
+	width: 100%;
+	height: 32px;
+	outline: 0;
+	border: 0;
+	font: 19px/32px 'OpenSans-Regular','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.iframe-options-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 20px;
+    padding: 11px 30px 11px 0;
+}
+.iframe-options-item-border {
+    border-bottom: 1px solid #e6e9ec;
+}
+.iframe-options-item-column-left {
+    min-width: 200px;
+    flex: 1;
+}
+.iframe-options-item-name {
+    padding-top: 12px;
+    padding-right: 10px;
+    color: #5d6575;
+    font: 400 14px/16px "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.iframe-options-item-column-right {
+    flex: 5;
+}
+.iframe-field {
+    display: block;
+    box-sizing: border-box;
+    padding: 10px 30px 10px 9px;
+    max-width: 100%;
+    width: 100%;
+    outline: 0;
+    border: 1px solid #dde0e8;
+    border-radius: 1px;
+    background-color: #fff;
+    color: #424956;
+    font: 15px/17px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    transition: 220ms all ease;
+}
+.iframe-field-select {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-right: 30px;
+    min-width: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.iframe-field-number{
+	max-width: 200px;
+}
+.iframe-field-select[multiple] option{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.iframe-product-wrapper{
+	padding: 20px;
+}
+.iframe-product-wrapper a{
+	display: inline-block;
+	margin: 0 16px 0 0;
+	padding: 0 18px;
+	height: 47px;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	background: #ecedef;
+	box-shadow: 0 0 0 1px #c6cdd3 inset;
+	color: #7a818a;
+	vertical-align: middle;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-shadow: none;
+	white-space: nowrap;
+	font: normal 12px/47px "OpenSans-Bold", Helvetica, Arial, sans-serif;
+	cursor: pointer;
+	transition: background-color 0.2s linear, color 0.2s linear;
+	-webkit-font-smoothing: antialiased;
+	margin-bottom: 20px;
+}
+.iframe-product-table thead tr td{
+	background-image: linear-gradient(to bottom, #d5eef7, #b3e0f0);
+	color: #000;
+	height: 30px;
+	padding: 0 10px;
+}
+.iframe-product-table thead tr td:first-child {
+    border-radius: 2px 0 0 0;
+    text-align: left;
+}
+.iframe-product-item td{
+	padding: 6px 10px;
+}
+.iframe-product-item-delete{
+	width: 20px;
+	height: 20px;
+}
+.iframe-product-item-delete .icon{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: block;
+	cursor: pointer;
+}
+.iframe-product-item-delete .icon::after,.iframe-product-item-delete .icon::before{
+	content: '';
+	width: 20px;
+	height: 1px;
+	background: red;
+	position: absolute;
+	top: 9px;
+}
+.iframe-product-item-delete .icon::after{
+	transform: rotate(45deg);
+}
+.iframe-product-item-delete .icon::before{
+	transform: rotate(-45deg);
+}
+.iframe-event-edit-wrapper .crm-property-edit-top-block{
+	margin-left: 15px;
+	margin-top: 15px;	
+}
+.iframe-product-disable{
+	color: #3333;
+}
+.crm-footer-container{
+	text-align: center;
+    margin-bottom: 15px;
+}
+.iframe-message-no-available{
+	margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px 11px;
+    background-color: #fae5e8;
+    color: #d0011b;
+    font: 400 14px/16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

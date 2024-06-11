@@ -19,7 +19,7 @@
 *.gz
 *log.txt
 sitemap*.xml
-
+*.ico
 # Dotenv
 .env
 .env.*
@@ -88,4 +88,4 @@ migrations.archive
 old_bitrix
 stavropol
 novorossiisk
-well-known
+.well-known

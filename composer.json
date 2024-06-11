@@ -1,0 +1,66 @@
+{
+    "name": "pwd/niioz",
+    "description": "",
+    "license": "UNLICENSED",
+    "autoload": {
+        "psr-4": {
+            "Pwd\\": "local/class/pwd/"
+        },
+        "files": [
+            "local/php_interface/include/eventHandlers.php"
+        ]
+
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://niioz:XEkKh6UXg6N1M4ZsQaCv@gitlab.p-w-d.ru/website/alx.xlswebapi.git"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "2amigos/qrcode-library": "^1.0",
+        "alx/xlswebapi": "^1.8.0",
+        "andreyryabin/sprint.migration": "^3.15",
+        "dompdf/dompdf": "0.8.5",
+        "gregwar/captcha": "1.*",
+        "hflabs/dadata": "^20.7",
+        "laminas/laminas-json": "^3.1",
+        "laminas/laminas-serializer": "^2.9",
+        "latte/latte": "^2.9",
+        "nette/utils": "^3.0",
+        "nuovo/spreadsheet-reader": ">=0.5.11",
+        "phpdocumentor/reflection-docblock": "^5.1",
+        "spaceonfire/bitrix-tools": "^0.8.5",
+        "spaceonfire/collection": "^2.0",
+        "spaceonfire/command-bus": "^1.1",
+        "spaceonfire/container": "^2.0",
+        "spaceonfire/data-source": "^1.0",
+        "spaceonfire/data-source-bitrix": "^1.0",
+        "spaceonfire/value-object": "^1.3",
+        "symfony/property-info": "^5.0",
+        "vlucas/phpdotenv": "^4.1",
+        "webpractik/sentry": "^2.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "installer-paths": {
+            "bitrix/modules/{$name}/": [
+                "type:bitrix-module",
+                "type:bitrix-d7-module"
+            ]
+        }
+    }
+}

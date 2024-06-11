@@ -1,0 +1,2 @@
+<?php
+$MESS['RM_CRM_COMPANY_DETAILS_PRODUCTS_LABEL'] = 'Товары';

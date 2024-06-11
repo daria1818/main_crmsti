@@ -1,0 +1,10 @@
+{
+"name": "CRM S.T.I. online",
+"short_name": "CRM S.T.I. online",
+"start_url": "\/",
+"display": "browser",
+"background_color": "#ff0000",
+"theme_color": "#ff0000",
+"orientation": "natural",
+"lang": "ru"
+}
