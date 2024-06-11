@@ -48,6 +48,14 @@ $arUrlRewrite=array (
     'PATH' => '/docs/pub/index.php',
     'SORT' => 100,
   ),
+  135 => 
+  array (
+    'CONDITION' => '#^/pub/calendar-sharing/([0-9a-zA-Z]+)/?([^/]*)#',
+    'RULE' => 'hash=$1',
+    'ID' => 'bitrix:calendar.pub.sharing',
+    'PATH' => '/pub/calendar_sharing.php',
+    'SORT' => 100,
+  ),
   89 => 
   array (
     'CONDITION' => '#^\\/?\\/mobile/web_mobile_component\\/(.*)\\/.*#',
@@ -72,17 +80,17 @@ $arUrlRewrite=array (
     'PATH' => '/pub/payment.php',
     'SORT' => 100,
   ),
-  8 => 
+  9 => 
   array (
-    'CONDITION' => '#^/pub/pay/([0-9]+)/([0-9a-zA-Z]+)/([^/]*)#',
+    'CONDITION' => '#^/pub/pay/([0-9]+)/([0-9a-zA-Z]+)/([^/]+)#',
     'RULE' => 'account_number=$1&hash=$2',
     'ID' => 'bitrix:crm.invoice.payment.client',
     'PATH' => '/pub/payment.php',
     'SORT' => 100,
   ),
-  9 => 
+  8 => 
   array (
-    'CONDITION' => '#^/pub/pay/([0-9]+)/([0-9a-zA-Z]+)/([^/]+)#',
+    'CONDITION' => '#^/pub/pay/([0-9]+)/([0-9a-zA-Z]+)/([^/]*)#',
     'RULE' => 'account_number=$1&hash=$2',
     'ID' => 'bitrix:crm.invoice.payment.client',
     'PATH' => '/pub/payment.php',
@@ -112,6 +120,13 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/mobile/jscomponent.php',
     'SORT' => 100,
   ),
+  13 => 
+  array (
+    'CONDITION' => '#^/online/([\\.\\-0-9a-zA-Z]+)(/?)([^/]*)#',
+    'RULE' => 'alias=$1',
+    'PATH' => '/desktop_app/router.php',
+    'SORT' => 100,
+  ),
   11 => 
   array (
     'CONDITION' => '#^/mobile/disk/(?<hash>[0-9]+)/download#',
@@ -120,18 +135,19 @@ $arUrlRewrite=array (
     'PATH' => '/mobile/disk/index.php',
     'SORT' => 100,
   ),
-  13 => 
-  array (
-    'CONDITION' => '#^/online/([\\.\\-0-9a-zA-Z]+)(/?)([^/]*)#',
-    'RULE' => 'alias=$1',
-    'PATH' => '/desktop_app/router.php',
-    'SORT' => 100,
-  ),
   12 => 
   array (
     'CONDITION' => '#^/video/([\\.\\-0-9a-zA-Z]+)(/?)([^/]*)#',
     'RULE' => 'alias=$1&videoconf',
     'PATH' => '/desktop_app/router.php',
+    'SORT' => 100,
+  ),
+  133 => 
+  array (
+    'CONDITION' => '#^/timeman/login-history/([0-9]+)/.*#',
+    'RULE' => 'user=$1',
+    'ID' => 'bitrix:intranet.user.login.history',
+    'PATH' => '/timeman/login-history/index.php',
     'SORT' => 100,
   ),
   14 => 
@@ -173,12 +189,20 @@ $arUrlRewrite=array (
     'PATH' => '/settings/configs/userconsent.php',
     'SORT' => 100,
   ),
-  17 => 
+  16 => 
   array (
-    'CONDITION' => '#^/extranet/workgroups/create/#',
+    'CONDITION' => '#^/extranet/contacts/personal/#',
     'RULE' => '',
-    'ID' => 'bitrix:extranet.group_create',
-    'PATH' => '/extranet/workgroups/create/index.php',
+    'ID' => 'bitrix:socialnetwork_user',
+    'PATH' => '/extranet/contacts/personal.php',
+    'SORT' => 100,
+  ),
+  140 => 
+  array (
+    'CONDITION' => '#^/pub/payment-slip/([\\w\\W]+)/#',
+    'RULE' => 'signed_payment_id=$1',
+    'ID' => 'bitrix:salescenter.pub.payment.slip',
+    'PATH' => '/pub/payment_slip.php',
     'SORT' => 100,
   ),
   18 => 
@@ -189,44 +213,12 @@ $arUrlRewrite=array (
     'PATH' => '/extranet/crm/configs/perms/index.php',
     'SORT' => 100,
   ),
-  16 => 
+  17 => 
   array (
-    'CONDITION' => '#^/extranet/contacts/personal/#',
+    'CONDITION' => '#^/extranet/workgroups/create/#',
     'RULE' => '',
-    'ID' => 'bitrix:socialnetwork_user',
-    'PATH' => '/extranet/contacts/personal.php',
-    'SORT' => 100,
-  ),
-  80 => 
-  array (
-    'CONDITION' => '#^/stssync/contacts_extranet/#',
-    'RULE' => '',
-    'ID' => 'bitrix:stssync.server',
-    'PATH' => '/bitrix/services/stssync/contacts_extranet/index.php',
-    'SORT' => 100,
-  ),
-  83 => 
-  array (
-    'CONDITION' => '#^/stssync/calendar_extranet/#',
-    'RULE' => '',
-    'ID' => 'bitrix:stssync.server',
-    'PATH' => '/bitrix/services/stssync/calendar_extranet/index.php',
-    'SORT' => 100,
-  ),
-  37 => 
-  array (
-    'CONDITION' => '#^/marketplace/configuration/#',
-    'RULE' => '',
-    'ID' => 'bitrix:rest.configuration',
-    'PATH' => '/marketplace/configuration/index.php',
-    'SORT' => 100,
-  ),
-  92 => 
-  array (
-    'CONDITION' => '#^\\/?\\/mobileapp/jn\\/(.*)\\/.*#',
-    'RULE' => 'componentName=$1',
-    'ID' => '',
-    'PATH' => '/bitrix/services/mobileapp/jn.php',
+    'ID' => 'bitrix:extranet.group_create',
+    'PATH' => '/extranet/workgroups/create/index.php',
     'SORT' => 100,
   ),
   19 => 
@@ -237,28 +229,44 @@ $arUrlRewrite=array (
     'PATH' => '/crm/configs/deal_category/index.php',
     'SORT' => 100,
   ),
+  80 => 
+  array (
+    'CONDITION' => '#^/stssync/contacts_extranet/#',
+    'RULE' => '',
+    'ID' => 'bitrix:stssync.server',
+    'PATH' => '/bitrix/services/stssync/contacts_extranet/index.php',
+    'SORT' => 100,
+  ),
+  37 => 
+  array (
+    'CONDITION' => '#^/marketplace/configuration/#',
+    'RULE' => '',
+    'ID' => 'bitrix:rest.configuration',
+    'PATH' => '/marketplace/configuration/index.php',
+    'SORT' => 100,
+  ),
+  83 => 
+  array (
+    'CONDITION' => '#^/stssync/calendar_extranet/#',
+    'RULE' => '',
+    'ID' => 'bitrix:stssync.server',
+    'PATH' => '/bitrix/services/stssync/calendar_extranet/index.php',
+    'SORT' => 100,
+  ),
+  92 => 
+  array (
+    'CONDITION' => '#^\\/?\\/mobileapp/jn\\/(.*)\\/.*#',
+    'RULE' => 'componentName=$1',
+    'ID' => '',
+    'PATH' => '/bitrix/services/mobileapp/jn.php',
+    'SORT' => 100,
+  ),
   21 => 
   array (
     'CONDITION' => '#^/crm/configs/mailtemplate/#',
     'RULE' => '',
     'ID' => 'bitrix:crm.mail_template',
     'PATH' => '/crm/configs/mailtemplate/index.php',
-    'SORT' => 100,
-  ),
-  20 => 
-  array (
-    'CONDITION' => '#^/crm/configs/productprops/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.productprops',
-    'PATH' => '/crm/configs/productprops/index.php',
-    'SORT' => 100,
-  ),
-  114 => 
-  array (
-    'CONDITION' => '#^/extranet/knowledge/group/#',
-    'RULE' => '',
-    'ID' => 'bitrix:landing.pub',
-    'PATH' => '/extranet/knowledge/group/index.php',
     'SORT' => 100,
   ),
   120 => 
@@ -269,6 +277,22 @@ $arUrlRewrite=array (
     'PATH' => '/extranet/marketplace/app/index.php',
     'SORT' => 100,
   ),
+  114 => 
+  array (
+    'CONDITION' => '#^/extranet/knowledge/group/#',
+    'RULE' => '',
+    'ID' => 'bitrix:landing.pub',
+    'PATH' => '/extranet/knowledge/group/index.php',
+    'SORT' => 100,
+  ),
+  20 => 
+  array (
+    'CONDITION' => '#^/crm/configs/productprops/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.config.productprops',
+    'PATH' => '/crm/configs/productprops/index.php',
+    'SORT' => 100,
+  ),
   23 => 
   array (
     'CONDITION' => '#^/extranet/crm/configs/bp/#',
@@ -277,28 +301,20 @@ $arUrlRewrite=array (
     'PATH' => '/extranet/crm/configs/bp/index.php',
     'SORT' => 100,
   ),
+  134 => 
+  array (
+    'CONDITION' => '#^/marketing/master-yandex/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/master-yandex.php',
+    'SORT' => 100,
+  ),
   22 => 
   array (
     'CONDITION' => '#^/bitrix/services/ymarket/#',
     'RULE' => '',
     'ID' => '',
     'PATH' => '/bitrix/services/ymarket/index.php',
-    'SORT' => 100,
-  ),
-  91 => 
-  array (
-    'CONDITION' => '#^\\/?\\/mobile/jn\\/(.*)\\/.*#',
-    'RULE' => 'componentName=$1',
-    'ID' => '',
-    'PATH' => '/bitrix/services/mobile/jscomponent.php',
-    'SORT' => 100,
-  ),
-  49 => 
-  array (
-    'CONDITION' => '#^/crm/configs/automation/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.automation',
-    'PATH' => '/crm/configs/automation/index.php',
     'SORT' => 100,
   ),
   131 => 
@@ -333,52 +349,20 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/stssync/tasks_extranet/index.php',
     'SORT' => 100,
   ),
-  70 => 
+  91 => 
   array (
-    'CONDITION' => '#^/shop/import/instagram/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.order.import.instagram',
-    'PATH' => '/shop/import/instagram/index.php',
-    'SORT' => 100,
-  ),
-  66 => 
-  array (
-    'CONDITION' => '#^/crm/configs/exclusion/#',
-    'RULE' => '',
+    'CONDITION' => '#^\\/?\\/mobile/jn\\/(.*)\\/.*#',
+    'RULE' => 'componentName=$1',
     'ID' => '',
-    'PATH' => '/crm/configs/exclusion/index.php',
+    'PATH' => '/bitrix/services/mobile/jscomponent.php',
     'SORT' => 100,
   ),
-  104 => 
+  49 => 
   array (
-    'CONDITION' => '#^/marketing/config/role/#',
+    'CONDITION' => '#^/crm/configs/automation/#',
     'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/config/role.php',
-    'SORT' => 100,
-  ),
-  42 => 
-  array (
-    'CONDITION' => '#^/company/personal/mail/#',
-    'RULE' => '',
-    'ID' => 'bitrix:intranet.mail.config',
-    'PATH' => '/mail/index.php',
-    'SORT' => 100,
-  ),
-  24 => 
-  array (
-    'CONDITION' => '#^/crm/configs/locations/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.locations',
-    'PATH' => '/crm/configs/locations/index.php',
-    'SORT' => 100,
-  ),
-  26 => 
-  array (
-    'CONDITION' => '#^/crm/configs/mycompany/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.company',
-    'PATH' => '/crm/configs/mycompany/index.php',
+    'ID' => 'bitrix:crm.config.automation',
+    'PATH' => '/crm/configs/automation/index.php',
     'SORT' => 100,
   ),
   25 => 
@@ -389,12 +373,60 @@ $arUrlRewrite=array (
     'PATH' => '/extranet/mobile/webdav/index.php',
     'SORT' => 100,
   ),
-  27 => 
+  26 => 
   array (
-    'CONDITION' => '#^/crm/configs/currency/#',
+    'CONDITION' => '#^/crm/configs/mycompany/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.currency',
-    'PATH' => '/crm/configs/currency/index.php',
+    'ID' => 'bitrix:crm.company',
+    'PATH' => '/crm/configs/mycompany/index.php',
+    'SORT' => 100,
+  ),
+  24 => 
+  array (
+    'CONDITION' => '#^/crm/configs/locations/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.config.locations',
+    'PATH' => '/crm/configs/locations/index.php',
+    'SORT' => 100,
+  ),
+  66 => 
+  array (
+    'CONDITION' => '#^/crm/configs/exclusion/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/crm/configs/exclusion/index.php',
+    'SORT' => 100,
+  ),
+  42 => 
+  array (
+    'CONDITION' => '#^/company/personal/mail/#',
+    'RULE' => '',
+    'ID' => 'bitrix:intranet.mail.config',
+    'PATH' => '/mail/index.php',
+    'SORT' => 100,
+  ),
+  70 => 
+  array (
+    'CONDITION' => '#^/shop/import/instagram/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.order.import.instagram',
+    'PATH' => '/shop/import/instagram/index.php',
+    'SORT' => 100,
+  ),
+  104 => 
+  array (
+    'CONDITION' => '#^/marketing/config/role/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/config/role.php',
+    'SORT' => 100,
+  ),
+  132 => 
+  array (
+    'CONDITION' => '#^/shop/documents-stores/#',
+    'RULE' => '',
+    'ID' => 'bitrix:catalog.store.entity.controller',
+    'PATH' => '/shop/documents-stores/index.php',
     'SORT' => 100,
   ),
   79 => 
@@ -405,6 +437,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/stssync/contacts_crm/index.php',
     'SORT' => 100,
   ),
+  27 => 
+  array (
+    'CONDITION' => '#^/crm/configs/currency/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.currency',
+    'PATH' => '/crm/configs/currency/index.php',
+    'SORT' => 100,
+  ),
   121 => 
   array (
     'CONDITION' => '#^/extranet/marketplace/#',
@@ -413,12 +453,12 @@ $arUrlRewrite=array (
     'PATH' => '/extranet/marketplace/index.php',
     'SORT' => 100,
   ),
-  30 => 
+  28 => 
   array (
-    'CONDITION' => '#^/extranet/docs/shared#',
+    'CONDITION' => '#^/crm/configs/measure/#',
     'RULE' => '',
-    'ID' => 'bitrix:webdav',
-    'PATH' => '/extranet/docs/index.php',
+    'ID' => 'bitrix:crm.config.measure',
+    'PATH' => '/crm/configs/measure/index.php',
     'SORT' => 100,
   ),
   31 => 
@@ -437,44 +477,12 @@ $arUrlRewrite=array (
     'PATH' => '/marketing/blacklist.php',
     'SORT' => 100,
   ),
-  28 => 
+  30 => 
   array (
-    'CONDITION' => '#^/crm/configs/measure/#',
+    'CONDITION' => '#^/extranet/docs/shared#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.config.measure',
-    'PATH' => '/crm/configs/measure/index.php',
-    'SORT' => 100,
-  ),
-  35 => 
-  array (
-    'CONDITION' => '#^/crm/configs/preset/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.preset',
-    'PATH' => '/crm/configs/preset/index.php',
-    'SORT' => 100,
-  ),
-  34 => 
-  array (
-    'CONDITION' => '#^/crm/configs/fields/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.fields',
-    'PATH' => '/crm/configs/fields/index.php',
-    'SORT' => 100,
-  ),
-  29 => 
-  array (
-    'CONDITION' => '#^/crm/configs/volume/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.volume',
-    'PATH' => '/crm/configs/volume/index.php',
-    'SORT' => 100,
-  ),
-  96 => 
-  array (
-    'CONDITION' => '#^/marketing/template/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/template.php',
+    'ID' => 'bitrix:webdav',
+    'PATH' => '/extranet/docs/index.php',
     'SORT' => 100,
   ),
   32 => 
@@ -485,52 +493,44 @@ $arUrlRewrite=array (
     'PATH' => '/crm/configs/exch1c/index.php',
     'SORT' => 100,
   ),
+  34 => 
+  array (
+    'CONDITION' => '#^/crm/configs/fields/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.config.fields',
+    'PATH' => '/crm/configs/fields/index.php',
+    'SORT' => 100,
+  ),
+  35 => 
+  array (
+    'CONDITION' => '#^/crm/configs/preset/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.config.preset',
+    'PATH' => '/crm/configs/preset/index.php',
+    'SORT' => 100,
+  ),
+  96 => 
+  array (
+    'CONDITION' => '#^/marketing/template/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/template.php',
+    'SORT' => 100,
+  ),
+  29 => 
+  array (
+    'CONDITION' => '#^/crm/configs/volume/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.volume',
+    'PATH' => '/crm/configs/volume/index.php',
+    'SORT' => 100,
+  ),
   33 => 
   array (
     'CONDITION' => '#^/crm/reports/report/#',
     'RULE' => '',
     'ID' => 'bitrix:crm.report',
     'PATH' => '/crm/reports/report/index.php',
-    'SORT' => 100,
-  ),
-  98 => 
-  array (
-    'CONDITION' => '#^/marketing/contact/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/contact.php',
-    'SORT' => 100,
-  ),
-  129 => 
-  array (
-    'CONDITION' => '#^/shop/settings/kpi/#',
-    'RULE' => '',
-    'ID' => 'rtop:kpi',
-    'PATH' => '/shop/settings/kpi/index.php',
-    'SORT' => 100,
-  ),
-  41 => 
-  array (
-    'CONDITION' => '#^/bizproc/processes/#',
-    'RULE' => '',
-    'ID' => 'bitrix:lists',
-    'PATH' => '/bizproc/processes/index.php',
-    'SORT' => 100,
-  ),
-  95 => 
-  array (
-    'CONDITION' => '#^/marketing/segment/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/segment.php',
-    'SORT' => 100,
-  ),
-  40 => 
-  array (
-    'CONDITION' => '#^/crm/configs/perms/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.config.perms',
-    'PATH' => '/crm/configs/perms/index.php',
     'SORT' => 100,
   ),
   36 => 
@@ -541,6 +541,29 @@ $arUrlRewrite=array (
     'PATH' => '/marketplace/local/index.php',
     'SORT' => 100,
   ),
+  39 => 
+  array (
+    'CONDITION' => '#^/online/(/?)([^/]*)#',
+    'RULE' => '',
+    'PATH' => '/desktop_app/router.php',
+    'SORT' => 100,
+  ),
+  95 => 
+  array (
+    'CONDITION' => '#^/marketing/segment/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/segment.php',
+    'SORT' => 100,
+  ),
+  98 => 
+  array (
+    'CONDITION' => '#^/marketing/contact/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/contact.php',
+    'SORT' => 100,
+  ),
   108 => 
   array (
     'CONDITION' => '#^/timeman/schedules/#',
@@ -549,27 +572,28 @@ $arUrlRewrite=array (
     'PATH' => '/timeman/schedules.php',
     'SORT' => 100,
   ),
-  39 => 
+  129 => 
   array (
-    'CONDITION' => '#^/online/(/?)([^/]*)#',
+    'CONDITION' => '#^/shop/settings/kpi/#',
     'RULE' => '',
-    'PATH' => '/desktop_app/router.php',
+    'ID' => 'rtop:kpi',
+    'PATH' => '/shop/settings/kpi/index.php',
     'SORT' => 100,
   ),
-  103 => 
+  40 => 
   array (
-    'CONDITION' => '#^/marketing/toloka/#',
+    'CONDITION' => '#^/crm/configs/perms/#',
     'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/toloka.php',
+    'ID' => 'bitrix:crm.config.perms',
+    'PATH' => '/crm/configs/perms/index.php',
     'SORT' => 100,
   ),
-  77 => 
+  41 => 
   array (
-    'CONDITION' => '#^/stssync/calendar/#',
+    'CONDITION' => '#^/bizproc/processes/#',
     'RULE' => '',
-    'ID' => 'bitrix:stssync.server',
-    'PATH' => '/bitrix/services/stssync/calendar/index.php',
+    'ID' => 'bitrix:lists',
+    'PATH' => '/bizproc/processes/index.php',
     'SORT' => 100,
   ),
   68 => 
@@ -580,6 +604,22 @@ $arUrlRewrite=array (
     'PATH' => '/shop/buyer_group/index.php',
     'SORT' => 100,
   ),
+  76 => 
+  array (
+    'CONDITION' => '#^/stssync/contacts/#',
+    'RULE' => '',
+    'ID' => 'bitrix:stssync.server',
+    'PATH' => '/bitrix/services/stssync/contacts/index.php',
+    'SORT' => 100,
+  ),
+  103 => 
+  array (
+    'CONDITION' => '#^/marketing/toloka/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/marketing/toloka.php',
+    'SORT' => 100,
+  ),
   109 => 
   array (
     'CONDITION' => '#^/timeman/settings/#',
@@ -588,12 +628,28 @@ $arUrlRewrite=array (
     'PATH' => '/timeman/settings.php',
     'SORT' => 100,
   ),
-  38 => 
+  43 => 
   array (
-    'CONDITION' => '#^/marketplace/hook/#',
+    'CONDITION' => '#^/company/personal/#',
     'RULE' => '',
-    'ID' => 'bitrix:rest.hook',
-    'PATH' => '/marketplace/hook/index.php',
+    'ID' => 'bitrix:socialnetwork_user',
+    'PATH' => '/company/personal.php',
+    'SORT' => 100,
+  ),
+  77 => 
+  array (
+    'CONDITION' => '#^/stssync/calendar/#',
+    'RULE' => '',
+    'ID' => 'bitrix:stssync.server',
+    'PATH' => '/bitrix/services/stssync/calendar/index.php',
+    'SORT' => 100,
+  ),
+  110 => 
+  array (
+    'CONDITION' => '#^/timeman/worktime/#',
+    'RULE' => '',
+    'ID' => 'bitrix:timeman.worktime',
+    'PATH' => '/timeman/worktime.php',
     'SORT' => 100,
   ),
   116 => 
@@ -612,52 +668,12 @@ $arUrlRewrite=array (
     'PATH' => '/marketing/letter.php',
     'SORT' => 100,
   ),
-  76 => 
+  38 => 
   array (
-    'CONDITION' => '#^/stssync/contacts/#',
+    'CONDITION' => '#^/marketplace/hook/#',
     'RULE' => '',
-    'ID' => 'bitrix:stssync.server',
-    'PATH' => '/bitrix/services/stssync/contacts/index.php',
-    'SORT' => 100,
-  ),
-  43 => 
-  array (
-    'CONDITION' => '#^/company/personal/#',
-    'RULE' => '',
-    'ID' => 'bitrix:socialnetwork_user',
-    'PATH' => '/company/personal.php',
-    'SORT' => 100,
-  ),
-  110 => 
-  array (
-    'CONDITION' => '#^/timeman/worktime/#',
-    'RULE' => '',
-    'ID' => 'bitrix:timeman.worktime',
-    'PATH' => '/timeman/worktime.php',
-    'SORT' => 100,
-  ),
-  47 => 
-  array (
-    'CONDITION' => '#^/timeman/meeting/#',
-    'RULE' => '',
-    'ID' => 'bitrix:meetings',
-    'PATH' => '/timeman/meeting/index.php',
-    'SORT' => 100,
-  ),
-  45 => 
-  array (
-    'CONDITION' => '#^/marketplace/app/#',
-    'RULE' => '',
-    'ID' => 'bitrix:app.layout',
-    'PATH' => '/marketplace/app/index.php',
-    'SORT' => 100,
-  ),
-  112 => 
-  array (
-    'CONDITION' => '#^/knowledge/group/#',
-    'RULE' => '',
-    'ID' => 'bitrix:landing.pub',
-    'PATH' => '/knowledge/group/index.php',
+    'ID' => 'bitrix:rest.hook',
+    'PATH' => '/marketplace/hook/index.php',
     'SORT' => 100,
   ),
   44 => 
@@ -668,20 +684,28 @@ $arUrlRewrite=array (
     'PATH' => '/crm/configs/tax/index.php',
     'SORT' => 100,
   ),
-  48 => 
+  47 => 
   array (
-    'CONDITION' => '#^/crm/configs/ps/#',
+    'CONDITION' => '#^/timeman/meeting/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.config.ps',
-    'PATH' => '/crm/configs/ps/index.php',
+    'ID' => 'bitrix:meetings',
+    'PATH' => '/timeman/meeting/index.php',
     'SORT' => 100,
   ),
-  67 => 
+  112 => 
   array (
-    'CONDITION' => '#^/shop/orderform/#',
+    'CONDITION' => '#^/knowledge/group/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.order.matcher',
-    'PATH' => '/shop/orderform/index.php',
+    'ID' => 'bitrix:landing.pub',
+    'PATH' => '/knowledge/group/index.php',
+    'SORT' => 100,
+  ),
+  45 => 
+  array (
+    'CONDITION' => '#^/marketplace/app/#',
+    'RULE' => '',
+    'ID' => 'bitrix:app.layout',
+    'PATH' => '/marketplace/app/index.php',
     'SORT' => 100,
   ),
   50 => 
@@ -692,12 +716,44 @@ $arUrlRewrite=array (
     'PATH' => '/crm/configs/bp/index.php',
     'SORT' => 100,
   ),
+  67 => 
+  array (
+    'CONDITION' => '#^/shop/orderform/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.order.matcher',
+    'PATH' => '/shop/orderform/index.php',
+    'SORT' => 100,
+  ),
+  48 => 
+  array (
+    'CONDITION' => '#^/crm/configs/ps/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.config.ps',
+    'PATH' => '/crm/configs/ps/index.php',
+    'SORT' => 100,
+  ),
   130 => 
   array (
     'CONDITION' => '#^/shop/documents/#',
     'RULE' => '',
     'ID' => 'bitrix:catalog.store.document',
     'PATH' => '/shop/documents/index.php',
+    'SORT' => 100,
+  ),
+  78 => 
+  array (
+    'CONDITION' => '#^/stssync/tasks/#',
+    'RULE' => '',
+    'ID' => 'bitrix:stssync.server',
+    'PATH' => '/bitrix/services/stssync/tasks/index.php',
+    'SORT' => 100,
+  ),
+  99 => 
+  array (
+    'CONDITION' => '#^/shop/settings/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.admin.page.controller',
+    'PATH' => '/shop/settings/index.php',
     'SORT' => 100,
   ),
   94 => 
@@ -716,44 +772,12 @@ $arUrlRewrite=array (
     'PATH' => '/company/lists/index.php',
     'SORT' => 100,
   ),
-  99 => 
+  138 => 
   array (
-    'CONDITION' => '#^/shop/settings/#',
+    'CONDITION' => '#^/shop/terminal/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.admin.page.controller',
-    'PATH' => '/shop/settings/index.php',
-    'SORT' => 100,
-  ),
-  78 => 
-  array (
-    'CONDITION' => '#^/stssync/tasks/#',
-    'RULE' => '',
-    'ID' => 'bitrix:stssync.server',
-    'PATH' => '/bitrix/services/stssync/tasks/index.php',
-    'SORT' => 100,
-  ),
-  107 => 
-  array (
-    'CONDITION' => '#^/crm/tracking/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/crm/tracking/index.php',
-    'SORT' => 100,
-  ),
-  102 => 
-  array (
-    'CONDITION' => '#^/marketing/rc/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/marketing/rc.php',
-    'SORT' => 100,
-  ),
-  53 => 
-  array (
-    'CONDITION' => '#^/mobile/webdav#',
-    'RULE' => '',
-    'ID' => 'bitrix:mobile.webdav.file.list',
-    'PATH' => '/mobile/webdav/index.php',
+    'ID' => 'bitrix:crm.terminal.payment.controller',
+    'PATH' => '/terminal/index.php',
     'SORT' => 100,
   ),
   52 => 
@@ -764,6 +788,22 @@ $arUrlRewrite=array (
     'PATH' => '/crm/activity/index.php',
     'SORT' => 100,
   ),
+  53 => 
+  array (
+    'CONDITION' => '#^/mobile/webdav#',
+    'RULE' => '',
+    'ID' => 'bitrix:mobile.webdav.file.list',
+    'PATH' => '/mobile/webdav/index.php',
+    'SORT' => 100,
+  ),
+  139 => 
+  array (
+    'CONDITION' => '#^/crm/terminal/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.terminal.payment.controller',
+    'PATH' => '/terminal/index.php',
+    'SORT' => 100,
+  ),
   122 => 
   array (
     'CONDITION' => '#^/shop/catalog/#',
@@ -772,60 +812,20 @@ $arUrlRewrite=array (
     'PATH' => '/shop/catalog/index.php',
     'SORT' => 100,
   ),
-  101 => 
+  102 => 
   array (
-    'CONDITION' => '#^/shop/orders/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.order',
-    'PATH' => '/shop/orders/index.php',
-    'SORT' => 100,
-  ),
-  123 => 
-  array (
-    'CONDITION' => '#^/crm/catalog/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.catalog.controller',
-    'PATH' => '/crm/catalog/index.php',
-    'SORT' => 100,
-  ),
-  54 => 
-  array (
-    'CONDITION' => '#^/crm/company/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.company',
-    'PATH' => '/crm/company/index.php',
-    'SORT' => 100,
-  ),
-  56 => 
-  array (
-    'CONDITION' => '#^/\\.well-known#',
+    'CONDITION' => '#^/marketing/rc/#',
     'RULE' => '',
     'ID' => '',
-    'PATH' => '/bitrix/groupdav.php',
+    'PATH' => '/marketing/rc.php',
     'SORT' => 100,
   ),
-  60 => 
+  107 => 
   array (
-    'CONDITION' => '#^/crm/contact/#',
+    'CONDITION' => '#^/crm/tracking/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.contact',
-    'PATH' => '/crm/contact/index.php',
-    'SORT' => 100,
-  ),
-  59 => 
-  array (
-    'CONDITION' => '#^/crm/product/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.product',
-    'PATH' => '/crm/product/index.php',
-    'SORT' => 100,
-  ),
-  57 => 
-  array (
-    'CONDITION' => '#^/marketplace/#',
-    'RULE' => '',
-    'ID' => 'bitrix:rest.marketplace',
-    'PATH' => '/marketplace/index.php',
+    'ID' => '',
+    'PATH' => '/crm/tracking/index.php',
     'SORT' => 100,
   ),
   55 => 
@@ -836,6 +836,46 @@ $arUrlRewrite=array (
     'PATH' => '/crm/webform/index.php',
     'SORT' => 100,
   ),
+  100 => 
+  array (
+    'CONDITION' => '#^/shop/stores/#',
+    'RULE' => '',
+    'ID' => 'bitrix:landing.start',
+    'PATH' => '/shop/stores/index.php',
+    'SORT' => 100,
+  ),
+  59 => 
+  array (
+    'CONDITION' => '#^/crm/product/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.product',
+    'PATH' => '/crm/product/index.php',
+    'SORT' => 100,
+  ),
+  60 => 
+  array (
+    'CONDITION' => '#^/crm/contact/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.contact',
+    'PATH' => '/crm/contact/index.php',
+    'SORT' => 100,
+  ),
+  57 => 
+  array (
+    'CONDITION' => '#^/marketplace/#',
+    'RULE' => '',
+    'ID' => 'bitrix:rest.marketplace',
+    'PATH' => '/marketplace/index.php',
+    'SORT' => 100,
+  ),
+  123 => 
+  array (
+    'CONDITION' => '#^/crm/catalog/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.catalog.controller',
+    'PATH' => '/crm/catalog/index.php',
+    'SORT' => 100,
+  ),
   58 => 
   array (
     'CONDITION' => '#^/crm/invoice/#',
@@ -844,12 +884,44 @@ $arUrlRewrite=array (
     'PATH' => '/crm/invoice/index.php',
     'SORT' => 100,
   ),
-  100 => 
+  101 => 
   array (
-    'CONDITION' => '#^/shop/stores/#',
+    'CONDITION' => '#^/shop/orders/#',
     'RULE' => '',
-    'ID' => 'bitrix:landing.start',
-    'PATH' => '/shop/stores/index.php',
+    'ID' => 'bitrix:crm.order',
+    'PATH' => '/shop/orders/index.php',
+    'SORT' => 100,
+  ),
+  56 => 
+  array (
+    'CONDITION' => '#^/\\.well-known#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/bitrix/groupdav.php',
+    'SORT' => 100,
+  ),
+  54 => 
+  array (
+    'CONDITION' => '#^/crm/company/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.company',
+    'PATH' => '/crm/company/index.php',
+    'SORT' => 100,
+  ),
+  62 => 
+  array (
+    'CONDITION' => '#^/crm/button/#',
+    'RULE' => '',
+    'ID' => '',
+    'PATH' => '/crm/button/index.php',
+    'SORT' => 100,
+  ),
+  69 => 
+  array (
+    'CONDITION' => '#^/shop/buyer/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.order.buyer',
+    'PATH' => '/shop/buyer/index.php',
     'SORT' => 100,
   ),
   61 => 
@@ -868,20 +940,12 @@ $arUrlRewrite=array (
     'PATH' => '/conference/index.php',
     'SORT' => 100,
   ),
-  69 => 
+  63 => 
   array (
-    'CONDITION' => '#^/shop/buyer/#',
+    'CONDITION' => '#^/crm/quote/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.order.buyer',
-    'PATH' => '/shop/buyer/index.php',
-    'SORT' => 100,
-  ),
-  62 => 
-  array (
-    'CONDITION' => '#^/crm/button/#',
-    'RULE' => '',
-    'ID' => '',
-    'PATH' => '/crm/button/index.php',
+    'ID' => 'bitrix:crm.quote',
+    'PATH' => '/crm/quote/index.php',
     'SORT' => 100,
   ),
   113 => 
@@ -892,28 +956,12 @@ $arUrlRewrite=array (
     'PATH' => '/knowledge/index.php',
     'SORT' => 100,
   ),
-  63 => 
+  137 => 
   array (
-    'CONDITION' => '#^/crm/quote/#',
+    'CONDITION' => '#^/terminal/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.quote',
-    'PATH' => '/crm/quote/index.php',
-    'SORT' => 100,
-  ),
-  126 => 
-  array (
-    'CONDITION' => '#^/crm/type/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.router',
-    'PATH' => '/crm/type/index.php',
-    'SORT' => 100,
-  ),
-  117 => 
-  array (
-    'CONDITION' => '#^/kb/group/#',
-    'RULE' => '',
-    'ID' => 'bitrix:landing.start',
-    'PATH' => '/kb/group/index.php',
+    'ID' => 'bitrix:crm.terminal.payment.controller',
+    'PATH' => '/terminal/index.php',
     'SORT' => 100,
   ),
   65 => 
@@ -932,6 +980,29 @@ $arUrlRewrite=array (
     'PATH' => '/crm/lead/index.php',
     'SORT' => 100,
   ),
+  0 => 
+  array (
+    'CONDITION' => '#^/pub/site/#',
+    'ID' => 'bitrix:landing.pub',
+    'PATH' => '/pub/site/index.php',
+    'SORT' => 100,
+  ),
+  126 => 
+  array (
+    'CONDITION' => '#^/crm/type/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.router',
+    'PATH' => '/crm/type/index.php',
+    'SORT' => 100,
+  ),
+  117 => 
+  array (
+    'CONDITION' => '#^/kb/group/#',
+    'RULE' => '',
+    'ID' => 'bitrix:landing.start',
+    'PATH' => '/kb/group/index.php',
+    'SORT' => 100,
+  ),
   71 => 
   array (
     'CONDITION' => '#^/docs/pub/#',
@@ -940,19 +1011,12 @@ $arUrlRewrite=array (
     'PATH' => '/docs/pub/extlinks.php',
     'SORT' => 100,
   ),
-  0 => 
+  111 => 
   array (
-    'CONDITION' => '#^/pub/site/#',
-    'ID' => 'bitrix:landing.pub',
-    'PATH' => '/pub/site/index.php',
-    'SORT' => 100,
-  ),
-  87 => 
-  array (
-    'CONDITION' => '#^/stores/#',
+    'CONDITION' => '#^/crm/ml/#',
     'RULE' => '',
-    'ID' => 'bitrix:landing.start',
-    'PATH' => '/stores/index.php',
+    'ID' => 'bitrix:crm.ml',
+    'PATH' => '/crm/ml/index.php',
     'SORT' => 100,
   ),
   124 => 
@@ -962,12 +1026,20 @@ $arUrlRewrite=array (
     'PATH' => '/devops/index.php',
     'SORT' => 100,
   ),
-  111 => 
+  136 => 
   array (
-    'CONDITION' => '#^/crm/ml/#',
+    'CONDITION' => '#^/market/#',
     'RULE' => '',
-    'ID' => 'bitrix:crm.ml',
-    'PATH' => '/crm/ml/index.php',
+    'ID' => 'bitrix:market',
+    'PATH' => '/market/index.php',
+    'SORT' => 100,
+  ),
+  87 => 
+  array (
+    'CONDITION' => '#^/stores/#',
+    'RULE' => '',
+    'ID' => 'bitrix:landing.start',
+    'PATH' => '/stores/index.php',
     'SORT' => 100,
   ),
   72 => 
@@ -984,6 +1056,22 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:landing.start',
     'PATH' => '/sites/index.php',
+    'SORT' => 100,
+  ),
+  84 => 
+  array (
+    'CONDITION' => '#^/onec/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.1c.start',
+    'PATH' => '/onec/index.php',
+    'SORT' => 100,
+  ),
+  106 => 
+  array (
+    'CONDITION' => '#^/mail/#',
+    'RULE' => '',
+    'ID' => 'bitrix:mail.client',
+    'PATH' => '/mail/index.php',
     'SORT' => 100,
   ),
   127 => 
@@ -1007,22 +1095,6 @@ $arUrlRewrite=array (
     'CONDITION' => '#^/rest/#',
     'RULE' => '',
     'PATH' => '/bitrix/services/rest/index.php',
-    'SORT' => 100,
-  ),
-  84 => 
-  array (
-    'CONDITION' => '#^/onec/#',
-    'RULE' => '',
-    'ID' => 'bitrix:crm.1c.start',
-    'PATH' => '/onec/index.php',
-    'SORT' => 100,
-  ),
-  106 => 
-  array (
-    'CONDITION' => '#^/mail/#',
-    'RULE' => '',
-    'ID' => 'bitrix:mail.client',
-    'PATH' => '/mail/index.php',
     'SORT' => 100,
   ),
   75 => 

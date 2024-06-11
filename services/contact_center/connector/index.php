@@ -4,12 +4,12 @@ use Bitrix\Main\Localization\Loc;
 
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
 global $APPLICATION;
-if($_GET['IFRAME'] !== 'Y')
+if(!isset($_GET['IFRAME']) || $_GET['IFRAME'] !== 'Y')
 {
 	IncludeModuleLangFile($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/intranet/public/services/contact_center/index.php');
 	$APPLICATION->SetTitle(Loc::getMessage('TITLE'));
 }?>
-<?if($_GET['IFRAME'] !== 'Y')
+<?if(!isset($_GET['IFRAME']) || $_GET['IFRAME'] !== 'Y')
 {
 	$APPLICATION->IncludeComponent(
 		'bitrix:intranet.popup.provider',
@@ -24,13 +24,13 @@ if($_GET['IFRAME'] !== 'Y')
 	);?>
 <?
 	$width = 700;
-	/*if(
+	if(
 		!empty($_REQUEST['ID'])
 		&& $_REQUEST['ID'] === 'facebook'
 	)
 	{
 		$width = 1000;
-	}*/
+	}
 ?>
 	<script>
 		BX.ready(function () {
@@ -53,7 +53,7 @@ if($_GET['IFRAME'] !== 'Y')
 	</script>
 <?
 } ?>
-<?if($_GET['IFRAME'] === 'Y')
+<?if(isset($_GET['IFRAME']) && $_GET['IFRAME'] === 'Y')
 {
 	$APPLICATION->IncludeComponent('bitrix:ui.sidepanel.wrapper',
 		'',

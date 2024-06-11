@@ -3,7 +3,7 @@ define("NEED_AUTH", true);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public/auth.php");
 
-if (is_string($_REQUEST["backurl"]) && strpos($_REQUEST["backurl"], "/") === 0)
+if (isset($_REQUEST["backurl"]) && is_string($_REQUEST["backurl"]) && mb_strpos($_REQUEST["backurl"], "/") === 0)
 {
 	LocalRedirect($_REQUEST["backurl"]);
 }

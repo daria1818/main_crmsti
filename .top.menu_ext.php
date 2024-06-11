@@ -9,6 +9,7 @@ if (SITE_TEMPLATE_ID !== "bitrix24")
 	return;
 }
 
+use Bitrix\Intranet\Binding\Marketplace;
 use Bitrix\Intranet\Site\Sections\AutomationSection;
 use \Bitrix\Landing\Rights;
 use Bitrix\Main\Loader;
@@ -187,7 +188,11 @@ if (Loader::includeModule("crm") && CCrmPerms::IsAccessEnabled())
 	$arMenuB24[] = [
 		GetMessage("TOP_MENU_CRM"),
 		SITE_DIR."crm/menu/",
-		[SITE_DIR."crm/", SITE_DIR."shop/documents/"],
+		[
+			SITE_DIR."crm/",
+			SITE_DIR."shop/documents/",
+			ModuleManager::isModuleInstalled('bitrix24') ? "/contact_center/" : SITE_DIR . "services/contact_center/"
+		],
 		[
 			"real_link" => \Bitrix\Crm\Settings\EntityViewSettings::getDefaultPageUrl(),
 			"counter_id" => $counterId,
@@ -212,6 +217,24 @@ else
 			"top_menu_id" => "top_menu_id_contact_center",
 		],
 		"",
+	];
+}
+
+if (
+	\Bitrix\Main\Config\Option::get('intranet', 'left_menu_crm_store_menu', 'Y') === 'Y'
+	&& Loader::includeModule('catalog')
+)
+{
+	$arMenuB24[] = [
+		GetMessage("MENU_STORE_ACCOUNTING_SECTION"),
+		SITE_DIR . 'shop/documents/inventory/',
+		[
+			SITE_DIR . 'shop/documents/',
+		],
+		[
+			'menu_item_id' => 'menu_crm_store',
+		],
+		''
 	];
 }
 
@@ -322,7 +345,8 @@ if (Loader::includeModule("socialnetwork"))
 				$groupPath
 			),
 			"menu_item_id"=>"menu_all_groups",
-			"top_menu_id" => "sonetgroups_panel_menu"
+			"top_menu_id" => "sonetgroups_panel_menu",
+			// todo oh 'counter_id' => 'workgroups',
 		] + ($canCreateGroup ? ["sub_link" => SITE_DIR."company/personal/user/".$userId."/groups/create/"] : []),
 		"CBXFeatures::IsFeatureEnabled('Workgroups')"
 	];
@@ -429,12 +453,12 @@ $arMenuB24[] = array(
 
 $arMenuB24[] = array(
 	GetMessage("TOP_MENU_MARKETPLACE_3"),
-	SITE_DIR."marketplace/",
-	array(SITE_DIR."marketplace/"),
+	SITE_DIR.Marketplace::getBoxMainDirectory(),
+	array(SITE_DIR.Marketplace::getBoxMainDirectory()),
 	array(
 		"real_link" => getLeftMenuItemLink(
 			"top_menu_id_marketplace",
-			SITE_DIR."marketplace/"
+			SITE_DIR.Marketplace::getBoxMainDirectory()
 		),
 		"menu_item_id"=>"menu_marketplace_sect",
 		"top_menu_id" => "top_menu_id_marketplace"

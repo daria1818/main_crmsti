@@ -1,11 +1,18 @@
 <?php
+/**
+ * @global  \CMain $APPLICATION
+ */
 require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php');
 
 $request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
 
 $groupId = $request->get('groupId');
-$afterCreate = '/kb/group/wiki/#site_show#/view/#landing_edit#/';
-
+$afterCreate = SITE_DIR.'kb/group/wiki/#site_show#/view/#landing_edit#/';
+$plainView = false;
+if ($request->get('tpl'))
+{
+	$plainView = true;
+}
 
 $APPLICATION->IncludeComponent(
 	'bitrix:ui.sidepanel.wrapper',
@@ -19,7 +26,7 @@ $APPLICATION->IncludeComponent(
 			'PATH_AFTER_CREATE' => $afterCreate
 		],
 		'USE_PADDING' => false,
-		'USE_UI_TOOLBAR' => 'Y'
+		'PLAIN_VIEW' => $plainView,
 	]
 );
 

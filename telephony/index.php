@@ -1,10 +1,15 @@
 <?
-require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public/telephony/index.php");
 
-IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public_bitrix24/telephony/index.php");
-require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_after.php");
-
-$APPLICATION->SetTitle(GetMessage("VI_PAGE_STAT_TITLE"));
+if (\Bitrix\Main\Application::getInstance()->getLicense()->getRegion() === 'by')
+{
+	$APPLICATION->SetTitle(GetMessage("VI_PAGE_STAT_TITLE_BY"));
+}
+else
+{
+	$APPLICATION->SetTitle(GetMessage("VI_PAGE_STAT_TITLE"));
+}
 ?>
 
 <?$APPLICATION->IncludeComponent("bitrix:ui.sidepanel.wrapper",
@@ -12,7 +17,8 @@ $APPLICATION->SetTitle(GetMessage("VI_PAGE_STAT_TITLE"));
 	array(
 		"POPUP_COMPONENT_NAME" => "bitrix:voximplant.start",
 		"POPUP_COMPONENT_TEMPLATE_NAME" => "",
-		"USE_PADDING" => false
+		"USE_PADDING" => false,
+		"USE_TOP_MENU" => true,
 	)
 );?>
 

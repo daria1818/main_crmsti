@@ -1,16 +1,5 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetAdditionalCSS("https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css", true);
-$APPLICATION->AddHeadScript("https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js");
-$APPLICATION->AddHeadScript("/shop/orders/ajaxAddress.js");
-$arSite = [];
-$rsSites = CSite::GetList($by="sort", $order="desc", []);
-while ($result = $rsSites->Fetch())
-{
-	$arSite[$result['ID']] = $result;
-}
-
-$APPLICATION->SetTitle(GetMessage("TITLE"));
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $APPLICATION->IncludeComponent("bitrix:crm.shop.page.controller", "", array(
 	"CONNECT_PAGE" => "N",
@@ -40,7 +29,7 @@ $APPLICATION->IncludeComponent(
 		"PATH_TO_PRODUCT_EDIT" => "/crm/product/edit/#product_id#/",
 		"PATH_TO_PRODUCT_SHOW" => "/crm/product/show/#product_id#/",
 		"PATH_TO_USER_PROFILE" => "/company/personal/user/#user_id#/",
-		"ELEMENT_ID" => $_REQUEST["order_id"],
+		"ELEMENT_ID" => $_REQUEST["order_id"] ?? '',
 		"SEF_FOLDER" => "/shop/orders/",
 		"SEF_URL_TEMPLATES" => array(
 			"index" => "index.php",
@@ -55,8 +44,6 @@ $APPLICATION->IncludeComponent(
 			"show" => array(),
 		)
 	)
-);?>
-<script>
-	var sites = <?=CUtil::PhpToJSObject($arSite);?>;
-</script>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);
+
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");

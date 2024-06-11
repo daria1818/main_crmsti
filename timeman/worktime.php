@@ -1,12 +1,14 @@
 <?
 
 use Bitrix\Main\Localization\Loc;
-use Bitrix\Main\ModuleManager;
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetPageProperty("BodyClass", "page-one-column");
+
+$bodyClass = $APPLICATION->GetPageProperty("BodyClass");
+$APPLICATION->SetPageProperty("BodyClass", ($bodyClass ? $bodyClass." " : "")."page-one-column");
+
 IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/intranet/public_bitrix24/timeman/timeman.php");
-$APPLICATION->SetTitle(Loc::getMessage("TITLE"));
+$APPLICATION->SetTitle(GetMessage("TITLE"));
 $licenseType = "";
 if (\Bitrix\Main\Loader::includeModule("bitrix24"))
 {
@@ -14,12 +16,12 @@ if (\Bitrix\Main\Loader::includeModule("bitrix24"))
 }
 ?><?
 
-if (ModuleManager::isModuleInstalled("timeman"))
+if (IsModuleInstalled("timeman"))
 {
 	try
 	{
 		$APPLICATION->IncludeComponent("bitrix:timeman.worktime", "", [
-			'ACTION' => $_REQUEST['MOD_ACTION'],
+			'ACTION' => $_REQUEST['MOD_ACTION'] ?? '',
 		]);
 	}
 	catch (\Bitrix\Main\AccessDeniedException $e)
@@ -27,7 +29,7 @@ if (ModuleManager::isModuleInstalled("timeman"))
 		echo $e->getMessage();
 	}
 }
-elseif (!(!ModuleManager::isModuleInstalled("timeman") && in_array($licenseType, ["company", "edu", "nfr"])))
+elseif (!(!IsModuleInstalled("timeman") && in_array($licenseType, ["company", "edu", "nfr"])))
 {
 	if (LANGUAGE_ID == "de" || LANGUAGE_ID == "la")
 	{

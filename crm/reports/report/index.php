@@ -1,25 +1,31 @@
-<?
+<?php
+/**
+ * @global  \CMain $APPLICATION
+ */
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public_bitrix24/crm/reports/report/index.php");
-$APPLICATION->SetTitle(GetMessage("TITLE")/*"־עקועû"*/);
-?><?$APPLICATION->IncludeComponent(
+IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public/crm/reports/report/index.php");
+$APPLICATION->SetTitle(GetMessage("CRM_TITLE"));
+?><?php
+$APPLICATION->IncludeComponent(
 	"bitrix:crm.report",
 	"",
-	Array(
+	[
 		"SEF_MODE" => "Y",
-		"REPORT_ID" => $_REQUEST["report_id"],
-		"SEF_FOLDER" => "/crm/reports/report/",
-		"SEF_URL_TEMPLATES" => Array(
+		"REPORT_ID" => $_REQUEST["report_id"] ?? '',
+		"SEF_FOLDER" => SITE_DIR."crm/reports/report/",
+		"SEF_URL_TEMPLATES" => [
 			"index" => "index.php",
 			"report" => "report/",
 			"construct" => "construct/#report_id#/#action#/",
 			"show" => "view/#report_id#/"
-		),
-		"VARIABLE_ALIASES" => Array(
-			"index" => Array(),
-			"report" => Array(),
-			"construct" => Array(),
-			"show" => Array(),
-		)
-	)
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+		],
+		"VARIABLE_ALIASES" => [
+			"index" => [],
+			"report" => [],
+			"construct" => [],
+			"show" => []
+		]
+	]
+);
+?><?php
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
