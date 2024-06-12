@@ -1285,7 +1285,7 @@ final class AjaxProcessor extends \Bitrix\Crm\Order\AjaxProcessor
         }
     }
 
-    public function getAddressCompany(?int $companyID, ?array $freshData): void
+    public static function getAddressCompany(?int $companyID, ?array $freshData): void
     {
         $entityRequest = new EntityRequisite();
         $entityCompany = $entityRequest->getList([
