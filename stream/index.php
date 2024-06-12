@@ -6,6 +6,7 @@
  */
 
 use Bitrix\Intranet\Integration\Wizards\Portal\Ids;
+use Bitrix\Intranet\Settings\Tools\ToolsManager;
 
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
 
@@ -15,6 +16,19 @@ $APPLICATION->SetPageProperty('title', htmlspecialcharsbx(COption::GetOptionStri
 
 if (SITE_TEMPLATE_ID !== 'bitrix24')
 {
+	return;
+}
+
+if (!ToolsManager::getInstance()->checkAvailabilityByToolId('news'))
+{
+	$APPLICATION->IncludeComponent('bitrix:intranet.settings.tool.stub', '.default',
+		[
+			'LIMIT_CODE' => 'limit_office_feed_off',
+			'MODULE' => 'intranet',
+			'SOURCE' => 'feed'
+		]
+	);
+
 	return;
 }
 
@@ -82,7 +96,7 @@ if (CModule::IncludeModule('intranet'))
 	$APPLICATION->IncludeComponent('bitrix:intranet.ustat.status', '', array(),	false);
 }
 
-if (CModule::IncludeModule('calendar'))
+if (CModule::IncludeModule('calendar') && ToolsManager::getInstance()->checkAvailabilityByToolId('calendar'))
 {
 	$APPLICATION->IncludeComponent(
 		'bitrix:calendar.events.list',

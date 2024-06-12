@@ -1,6 +1,6 @@
 <?php
 
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SERVER["DOCUMENT_ROOT"] . '/bitrix/header.php');
 
 if (
 	\Bitrix\Main\Loader::includeModule('bizproc')
@@ -12,13 +12,11 @@ if (
 }
 else
 {
+	global $APPLICATION;
 	$APPLICATION->IncludeComponent(
-		"bitrix:bizproc.workflow.instances",
-		"",
-		array(
-			"SET_TITLE" => 'Y',
-			"NAME_TEMPLATE" => CSite::GetNameFormat(),
-		)
+		'bitrix:bizproc.user.processes',
+		'.default',
+		[],
 	);
 }
 

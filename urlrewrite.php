@@ -261,6 +261,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/mobileapp/jn.php',
     'SORT' => 100,
   ),
+  145 => 
+  array (
+    'CONDITION' => '#^/sign/link/member/([0-9]+)/#',
+    'RULE' => 'memberId=$1',
+    'ID' => '',
+    'PATH' => '/sign/link.php',
+    'SORT' => 100,
+  ),
   21 => 
   array (
     'CONDITION' => '#^/crm/configs/mailtemplate/#',
@@ -708,6 +716,14 @@ $arUrlRewrite=array (
     'PATH' => '/marketplace/app/index.php',
     'SORT' => 100,
   ),
+  146 => 
+  array (
+    'CONDITION' => '#^/automation/type/#',
+    'RULE' => '',
+    'ID' => 'bitrix:crm.router',
+    'PATH' => '/automation/type/index.php',
+    'SORT' => 100,
+  ),
   50 => 
   array (
     'CONDITION' => '#^/crm/configs/bp/#',
@@ -738,6 +754,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:catalog.store.document',
     'PATH' => '/shop/documents/index.php',
+    'SORT' => 100,
+  ),
+  141 => 
+  array (
+    'CONDITION' => '#^/agent_contract/#',
+    'RULE' => '',
+    'ID' => 'bitrix:catalog.agent.contract.controller',
+    'PATH' => '/agent_contract/index.php',
     'SORT' => 100,
   ),
   78 => 
@@ -826,6 +850,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => '',
     'PATH' => '/crm/tracking/index.php',
+    'SORT' => 100,
+  ),
+  144 => 
+  array (
+    'CONDITION' => '#^/bi/dashboard/#',
+    'RULE' => '',
+    'ID' => 'bitrix:biconnector.apachesuperset.dashboard.controller',
+    'PATH' => '/bi/dashboard/index.php',
     'SORT' => 100,
   ),
   55 => 
@@ -1050,6 +1082,14 @@ $arUrlRewrite=array (
     'PATH' => '/m/docs/index.php',
     'SORT' => 100,
   ),
+  143 => 
+  array (
+    'CONDITION' => '#^/spaces/#',
+    'RULE' => '',
+    'ID' => 'bitrix:socialnetwork.spaces',
+    'PATH' => '/spaces/index.php',
+    'SORT' => 100,
+  ),
   86 => 
   array (
     'CONDITION' => '#^/sites/#',
@@ -1095,6 +1135,14 @@ $arUrlRewrite=array (
     'CONDITION' => '#^/rest/#',
     'RULE' => '',
     'PATH' => '/bitrix/services/rest/index.php',
+    'SORT' => 100,
+  ),
+  142 => 
+  array (
+    'CONDITION' => '#^/sign/#',
+    'RULE' => '',
+    'ID' => 'bitrix:sign.start',
+    'PATH' => '/sign/index.php',
     'SORT' => 100,
   ),
   75 => 

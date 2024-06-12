@@ -7,7 +7,7 @@ $APPLICATION->SetTitle(GetMessage("SERVICES_TITLE"));?>
 		0 => GetMessage("SERVICES_ORG_LIST"),
 	),
 	"PR_TIMEOUT" => "25",
-	"PR_NAMESPACE" => "http://www.1c-bitrix.ru",
+	"PR_NAMESPACE" => "https://www.1c-bitrix.ru",
 	"CACHE_TYPE" => "A",
 	"CACHE_TIME" => "3600",
 	"PR_URL_0" => "",

@@ -1,25 +1,24 @@
-<?
-define("BX_SKIP_USER_LIMIT_CHECK", true);
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/intranet/public_bitrix24/company/index.php");
-$APPLICATION->SetTitle(GetMessage("COMPANY_TITLE"));
-?>
-<?
-$componentParams = [
-	"PATH_TO_DEPARTMENT" => "/company/structure.php?set_filter_structure=Y&structure_UF_DEPARTMENT=#ID#",
-	"LIST_URL" => "/company/",
-];
-
+<?php
+/**
+ * @global  \CMain $APPLICATION
+ */
+require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
+IncludeModuleLangFile($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/intranet/public/company/index.php');
+$APPLICATION->SetTitle(GetMessage('COMPANY_TITLE'));
+?><?php
 $APPLICATION->IncludeComponent(
-	"bitrix:ui.sidepanel.wrapper",
-	"",
+	'bitrix:ui.sidepanel.wrapper',
+	'',
 	array(
-		'POPUP_COMPONENT_NAME' => "bitrix:intranet.user.list",
-		"POPUP_COMPONENT_TEMPLATE_NAME" => "",
-		"POPUP_COMPONENT_PARAMS" => $componentParams,
-		"USE_UI_TOOLBAR" => "Y"
+		'POPUP_COMPONENT_NAME' => 'bitrix:intranet.user.list',
+		'POPUP_COMPONENT_TEMPLATE_NAME' => '',
+		'POPUP_COMPONENT_PARAMS' => [
+			'PATH_TO_DEPARTMENT' => SITE_DIR.'company/structure.php?set_filter_structure=Y&structure_UF_DEPARTMENT=#ID#',
+			'LIST_URL' => SITE_DIR.'company/',
+		],
+		'USE_UI_TOOLBAR' => 'Y',
+		'POPUP_COMPONENT_USE_BITRIX24_THEME' => 'Y',
 	)
 );
-?>
-
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+?><?php
+require($_SERVER['DOCUMENT_ROOT'].'/bitrix/footer.php');
