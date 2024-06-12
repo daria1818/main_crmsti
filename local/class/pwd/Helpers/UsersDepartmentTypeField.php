@@ -13,7 +13,7 @@ class UsersDepartmentTypeField
      * Метод возвращает массив описания собственного типа свойств
      * @return array
      */
-    public function GetUserTypeDescription()
+    public static function GetUserTypeDescription()
     {
         return array(
             'PROPERTY_TYPE' => 'N',
@@ -25,7 +25,7 @@ class UsersDepartmentTypeField
         );
     }
 
-    public function GetPropertyFieldHtml($arProperty, $value, $strHTMLControlName)
+    public static function GetPropertyFieldHtml($arProperty, $value, $strHTMLControlName)
     {
         $options = '<option>- не выбрано -</option>';
         $arUsers = self::getUsers($arProperty['USER_TYPE_SETTINGS']['SECTION_ID']);
@@ -41,7 +41,7 @@ class UsersDepartmentTypeField
         return $html;
     }
 
-    public function getUsers($department_id)
+    public static function getUsers($department_id)
     {
         $dbUser= UserTable::getList([
             'select'=>['ID','LOGIN','NAME', 'LAST_NAME', 'SECOND_NAME'],
@@ -49,7 +49,7 @@ class UsersDepartmentTypeField
         ]);
         return $dbUser->FetchAll();
     }
-    public function getSection(){
+    public static function getSection(){
         $rsSection = SectionTable::getList([
             'filter' => [
                 'IBLOCK_ID' => 46,
@@ -62,7 +62,7 @@ class UsersDepartmentTypeField
     // Функция вызывается при выводе формы метаданных (настроек) свойства
     // @param bool $bVarsFromForm - флаг отправки формы
     // @return string - HTML для вывода
-    function GetSettingsHTML($arUserField = false, $arHtmlControl, $bVarsFromForm) {
+    public static function GetSettingsHTML($arUserField = false, $arHtmlControl, $bVarsFromForm) {
         $departments = self::getSection();
         foreach($departments as $department){
             if($department['ID'] === $arUserField['USER_TYPE_SETTINGS']['SECTION_ID']){
@@ -76,7 +76,7 @@ class UsersDepartmentTypeField
         <td><select name="'.$arHtmlControl['NAME'].'[SECTION_ID]">'.$options.'</select></td>
         </tr>';
     }
-    function PrepareSettings($arFields)
+    public static function PrepareSettings($arFields)
     {
         return $arFields['USER_TYPE_SETTINGS'];
     }
@@ -85,7 +85,7 @@ class UsersDepartmentTypeField
      * @param $arUserField
      * @return string
      */
-    function GetDBColumnType($arUserField)
+    public static function GetDBColumnType($arUserField)
     {
         global $DB;
         switch(strtolower($DB->type))

@@ -7,7 +7,14 @@ if (defined('BX_IM_FULLSCREEN'))
 }
 use Bitrix\Main\Localization\Loc;
 
-\Bitrix\Main\UI\Extension::load('ui.tutor');
+$v2MessengerEnabled = isset($arResult['MESSENGER_V2']) && $arResult['MESSENGER_V2'] === true;
+$copilotAvailable = $v2MessengerEnabled && isset($arResult['COPILOT_AVAILABLE']) && $arResult['COPILOT_AVAILABLE'] === true;
+
+if ($v2MessengerEnabled)
+{
+	\Bitrix\Main\UI\Extension::load("im.v2.application.quick-access");
+}
+\Bitrix\Main\UI\Extension::load(['ui.design-tokens', 'im.public']);
 $this->SetViewTarget("im-fullscreen");
 ?>
 <div class="bx-desktop bx-im-fullscreen-popup" id="im-workarea-popup">
@@ -90,8 +97,8 @@ $this->SetViewTarget("im-fullscreen");
 <?
 $this->SetViewTarget("im", 100);
 ?>
-<div class="bx-im-bar <?=($arResult['OL_OPERATOR']?"bx-im-bar-with-ol":"")?>" id="bx-im-bar">
-	<div class="help-block" id="bx-help-block" title="<?=GetMessage("AUTH_HELP")?>">
+<div class="bx-im-bar bx-im-bar-with-ol <? if ($copilotAvailable): ?><?= 'bx-im-bar-with-copilot' ?><? endif ?>" id="bx-im-bar">
+	<div class="help-block bx-im-border-b" id="bx-help-block" title="<?=GetMessage("AUTH_HELP")?>">
 		<div class="help-icon-border"></div>
 		<div class="help-block-icon"></div>
 		<div class="help-block-counter-wrap" id="bx-help-notify">
@@ -101,66 +108,43 @@ $this->SetViewTarget("im", 100);
 	if ($arResult["SHOW_HELP_SPOTLIGHT"])
 	{
 		$APPLICATION->includeComponent("bitrix:spotlight", "", array(
-			"ID" => "help-spotlight",
+			"ID" => "help-spotlight2",
+			"USER_TYPE" => "ALL",
 			"JS_OPTIONS" => array(
 				"targetElement" => "#bx-help-block",
 				"content"       => Loc::getMessage("IM_HELP_SPOTLIGHT"),
 				"targetVertex"  => "middle-center",
+				"left" => -10,
 				"lightMode"     => true
 			)
 		));
 	}
 	?>
-	<div id="bx-im-bar-notify" class="bx-im-informer <?=($arResult['OL_OPERATOR']?"":"bx-im-border-b")?>">
-		<div class="bx-im-informer-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_NOTIFY');?>"></div>
-		<div class="bx-im-informer-num"></div>
+	<div class="bx-im-helper-block bx-im-border-b">
+		<? if ($copilotAvailable): ?>
+			<div id="bx-im-bar-copilot" class="bx-im-informer bx-im-informer-copilot">
+				<div class="bx-im-informer-copilot-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_COPILOT');?>"></div>
+			</div>
+		<? endif ?>
+		<div id="bx-im-bar-notify" class="bx-im-informer">
+			<div class="bx-im-informer-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_NOTIFY');?>">
+				<div class="bx-im-informer-num"></div>
+			</div>
+		</div>
+		<div id="bx-im-bar-ol" class="bx-im-informer bx-im-informer-ol">
+			<div class="bx-im-informer-ol-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_OL');?>">
+				<div class="bx-im-informer-num"></div>
+			</div>
+		</div>
 	</div>
-	<?if ($arResult['OL_OPERATOR']):?>
-	<div id="bx-im-bar-ol" class="bx-im-informer bx-im-informer-ol bx-im-border-b">
-		<div class="bx-im-informer-ol-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_OL');?>"></div>
-		<div class="bx-im-informer-num"></div>
-	</div>
-	<?endif;?>
 	<div id="bx-im-bar-search" class="bx-im-search bx-im-border-b" title="<?=GetMessage('IM_MESSENGER_OPEN_SEARCH');?>">
 		<div class="bx-im-informer-num"></div>
 	</div>
-	<div class="bx-im-users-wrap <?if ($arResult['PHONE_ENABLED']):?>bx-im-users-wrap-with-phone<?else:?>bx-im-users-wrap-without-phone<?endif;?>">
+	<div class="bx-im-users-wrap">
 		<div class="bx-im-scroll-wrap" id="bx-im-external-recent-list"></div>
 	</div>
 
-	<div class="bx-im-bottom-block" id="bx-im-bottom-block">
-		<div id="bx-im-bar-mobile" class="bx-im-bar-mobile" onclick="BX.UI.InfoHelper.show('mobile_app');">
-			<div class="bx-im-mobile-icon" title="<?=GetMessage('IM_MESSENGER_OPEN_MOBILE');?>"></div>
-		</div>
-		<?if($arResult['PHONE_ENABLED']):?>
-		<div id="bx-im-btn-call" class="bx-im-btn-wrap bx-im-btn-call" title="<?=GetMessage('IM_MESSENGER_OPEN_CALL2');?>">
-			<div class="bx-im-btn"></div>
-		</div>
-		<?endif;?>
-		<div id="ui-tutor-btn-wrap" class="ui-tutor-btn-wrap"></div>
-		<div id="tutorial_feedback" style="display: none;">
-			<?
-			$feedbackFormIdTutorial = 'tutorial_feedback';
-			$APPLICATION->IncludeComponent(
-				'bitrix:ui.feedback.form',
-				'',
-				[
-					'ID' => $feedbackFormIdTutorial,
-					'FORMS' => [
-						['zones' => ['com.br'], 'id' => '140','lang' => 'br', 'sec' => 'y3ri4i'],
-						['zones' => ['es'], 'id' => '142','lang' => 'la', 'sec' => 'gt3i4o'],
-						['zones' => ['de'], 'id' => '144','lang' => 'de', 'sec' => 'tuuz7v'],
-						['zones' => ['ua'], 'id' => '148','lang' => 'ua', 'sec' => 'mbt3n2'],
-						['zones' => ['ru', 'by', 'kz'], 'id' => '138','lang' => 'ru', 'sec' => 'ike989'],
-						['zones' => ['en'], 'id' => '146','lang' => 'en', 'sec' => '7fjsmc'],
-					],
-					'PRESETS' => [],
-					'VIEW_TARGET' => null
-				]
-			);?>
-
-		</div>
-	</div>
+	<div class="bx-im-bottom-block" id="bx-im-bottom-block"></div>
 	<svg width="0" height="0" style="display: block">
 		<defs>
 			<clipPath id="clip-avatar">
@@ -178,40 +162,19 @@ $this->SetViewTarget("im", 100);
 <?$frame = $this->createFrame("im")->begin("");
 	$arResult['EXTERNAL_RECENT_LIST'] = "bx-im-external-recent-list";
 ?>
-<?
-$tutorialDataJson = '';
-try
-{
-	$externalData = \CUserOptions::GetOption('external', 'notification', []);
-	$tutorialDataJson = \Bitrix\Main\Web\Json::encode([
-		'tutorialData' => \Bitrix\Main\Web\Json::decode($externalData['tutorials']),
-		'eventService' => \Bitrix\Main\Web\Json::decode($externalData['eventService']),
-		'lastCheckTime' => $externalData['lastCheckTime'],
-	]);
-}
-catch(\Bitrix\Main\ArgumentException $exception)
-{
-	$tutorialDataJson = '{}';
-}
-
-$helpdeskUrl = "";
-if (\Bitrix\Main\Loader::includeModule("ui"))
-{
-	$helpdeskUrl = \Bitrix\UI\Util::getHelpdeskUrl(true);
-}
-?>
 <script>
 	BX.ready(function() {
-		BX.Intranet.Bitrix24.ImBar.init();
-		if(BX.UI && BX.UI.Tutor && BX.UI.Tutor.Manager)
-		{
-			BX.UI.Tutor.Manager.init(
-				<?=$tutorialDataJson;?>,
-				"<?=$helpdeskUrl?>",
-				"<?=CUtil::JSEscape($feedbackFormIdTutorial)?>"
-			);
-		}
+		BX.Intranet.Bitrix24.ImBar.init(<?= \Bitrix\Main\Web\Json::encode($v2MessengerEnabled) ?>);
 	});
-	<?=CIMMessenger::GetTemplateJS([], $arResult)?>
+	<?php
+		if ($v2MessengerEnabled)
+		{
+			echo CIMMessenger::GetV2TemplateJS($arResult);
+		}
+		else
+		{
+			echo CIMMessenger::GetTemplateJS([], $arResult);
+		}
+	?>
 </script>
 <?$frame->end()?>
