@@ -175,7 +175,7 @@ class BuyersAndCounterparties {
                 o   Наименование
         */
         $result = $this->sender->getResult();
-        if($result["status"] == 1 && $result["Data"]){
+        if(is_array($result) && $result["status"] == 1 && $result["Data"]){
         	$this->counterparties = $result["Data"];
         }
     }

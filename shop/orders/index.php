@@ -1,5 +1,14 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetAdditionalCSS("https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css", true);
+$APPLICATION->AddHeadScript("https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js");
+$APPLICATION->AddHeadScript("/shop/orders/ajaxAddress.js");
+$arSite = [];
+$rsSites = CSite::GetList($by="sort", $order="desc", []);
+while ($result = $rsSites->Fetch())
+{
+	$arSite[$result['ID']] = $result;
+}
 
 $APPLICATION->IncludeComponent("bitrix:crm.shop.page.controller", "", array(
 	"CONNECT_PAGE" => "N",
@@ -45,5 +54,9 @@ $APPLICATION->IncludeComponent(
 		)
 	)
 );
-
+?>
+<script>
+	var sites = <?=CUtil::PhpToJSObject($arSite);?>;
+</script>
+<?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
