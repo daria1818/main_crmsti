@@ -183,9 +183,6 @@ $APPLICATION->IncludeComponent(
 		"NAV_OBJECT"           => $arResult["NAV_OBJECT"],
 		"SORT"                 => $arResult["SORT"],
 		"FILTER"               => $arResult["FILTER"],
-		"FOOTER"               => array(
-			array("title" => GetMessage("CT_BLL_SELECTED"), "value" => $arResult["NAV_OBJECT"]->SelectedRowsCount())
-		),
 		"AJAX_MODE"            => "Y",
 		"AJAX_OPTION_JUMP"     => "N",
 		"FILTER_TEMPLATE_NAME" => "tabbed"
