@@ -1,4 +1,5 @@
 <?
+define("NEED_AUTH", true);
 // Composer autoloader
 use Bitrix\Main\EventManager;
 use Dotenv\Exception\InvalidFileException;
@@ -153,8 +154,8 @@ function DoNotAdd(&$arFields)
 $eventManager->addEventHandler('documentgenerator', 'onBeforeProcessDocument', function(\Bitrix\Main\Event $event){
 
     $document = $event->getParameter('document');
-    $logger = Logger::getLogger('test', 'test');
-    $logger->log('orderID = ');
+    //$logger = Logger::getLogger('test', 'test');
+    //$logger->log('orderID = ');
 });
 
 function get_SOAP()

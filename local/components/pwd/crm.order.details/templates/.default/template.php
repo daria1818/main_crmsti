@@ -3,7 +3,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Crm\Component\EntityDetails\ComponentMode;
 
-CJSCore::Init(['ui']);
+CJSCore::Init(['ui', 'documentpreview']);
 if (\Bitrix\Main\Loader::includeModule('sale')) {
     Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/sale/core_ui_widget.js');
     Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/sale/core_ui_etc.js');
