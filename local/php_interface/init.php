@@ -59,6 +59,7 @@ define('IBLOCKS_CATALOG', [CATALOG_IBLOCK, OFFERS_IBLOCK]);
     'RtopTypeEventTable' => '/local/php_interface/api/classes/RtopTypeEvent.php',
     'RtopSaleActionGift' => '/local/php_interface/api/classes/RtopSaleActionGift.php',
     'RtopSaleFreeDelivery' => '/local/php_interface/api/classes/RtopSaleFreeDelivery.php',
+    'RtopSaleOrderPrice' => '/local/php_interface/api/classes/RtopSaleOrderPrice.php',
 ]);
 
 define('CRM_USE_CUSTOM_SERVICES', true);
@@ -110,6 +111,12 @@ $eventManager->addEventHandlerCompatible(
     "sale",
     "OnCondSaleControlBuildList",
     ["RtopSaleFreeDelivery", "GetControlDescr"]
+);
+
+$eventManager->addEventHandlerCompatible(
+    "sale",
+    "OnCondSaleControlBuildList",
+    ["RtopSaleOrderPrice", "GetControlDescr"]
 );
 
 
